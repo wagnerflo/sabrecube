@@ -68,8 +68,10 @@ class sabrecube_carddav
     }
 
     protected function initAddressBook() {
-        if(!$this->ab)
+        if(!$this->ab) {
             $this->ab = $this->rc->get_address_book('sql');
+            $this->ab->set_pagesize(0);
+        }
     }
 
     public function __construct($rcmail) {
