@@ -1,7 +1,7 @@
-RCMAIL_VERSION=1.1.3
-RCMAIL_DOWNLOAD=https://downloads.sourceforge.net/project/roundcubemail/roundcubemail/$(RCMAIL_VERSION)/roundcubemail-$(RCMAIL_VERSION)-complete.tar.gz
+RCMAIL_VERSION=1.2.5
+RCMAIL_DOWNLOAD=https://github.com/roundcube/roundcubemail/releases/download/$(RCMAIL_VERSION)/roundcubemail-$(RCMAIL_VERSION)-complete.tar.gz
 
-SABREDAV_VERSION=3.0.5
+SABREDAV_VERSION=3.2.2
 SABREDAV_DOWNLOAD=https://github.com/fruux/sabre-dav/releases/download/$(SABREDAV_VERSION)/sabredav-$(SABREDAV_VERSION).zip
 
 server: logs temp htdocs/roundcube htdocs/sabrecube htdocs/SabreDAV \
