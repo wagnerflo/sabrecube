@@ -49,11 +49,13 @@ require_once __DIR__ . '/carddav_backend.php';
 $authBackend      = new sabrecube_auth($RCMAIL);
 $principalBackend = new sabrecube_principals($RCMAIL);
 $carddavBackend   = new sabrecube_carddav($RCMAIL);
+$calendarBackend  = new Sabre\CalDAV\Backend\PDO(new PDO('sqlite:' . RCMAIL_INSTANCE_DIR . '/calendars.sqlite'));
 
 // Setting up the directory tree
 $nodes = [
     new Sabre\DAVACL\PrincipalCollection($principalBackend),
     new Sabre\CardDAV\AddressBookRoot($principalBackend, $carddavBackend),
+    new Sabre\CalDAV\CalendarRoot($principalBackend, $calendarBackend),
 ];
 
 // The object tree needs in turn to be passed to the server class
@@ -63,8 +65,13 @@ $server->setBaseUri(SABRECUBE_BASE_URI);
 // Plugins
 $server->addPlugin(new Sabre\DAV\Auth\Plugin($authBackend, 'SabreDAV'));
 $server->addPlugin(new Sabre\DAV\Browser\Plugin());
-$server->addPlugin(new Sabre\CardDAV\Plugin());
 $server->addPlugin(new Sabre\DAVACL\Plugin());
+
+$server->addPlugin(new Sabre\CardDAV\Plugin());
+$server->addPlugin(new Sabre\CalDAV\Plugin());
+$server->addPlugin(new Sabre\CalDAV\Subscriptions\Plugin());
+$server->addPlugin(new Sabre\CalDAV\Schedule\Plugin());
+
 $server->addPlugin(new Sabre\DAV\Sync\Plugin());
 
 // And off we go!
