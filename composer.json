@@ -1,0 +1,13 @@
+{
+    "name": "wagnerflo/sabrecube",
+    "homepage": "https://github.com/wagnerflo/sabrecube/",
+    "authors": [
+        {
+            "name": "Florian Wagner",
+            "email": "florian@wagner-flo.net"
+        }
+    ],
+    "require": {
+        "sabre/dav": "^4.0"
+    }
+}
